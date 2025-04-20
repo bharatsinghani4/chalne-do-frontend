@@ -28,6 +28,9 @@ const fallbackSrc = "icons/thumbnail.svg";
 
 const GlobalAudioPlayer = () => {
   const audio = useAudio();
+  if (!audio.durations.length) {
+    return <div>Loading audio...</div>;
+  }
   const [passUpdate, setPassUpdate] = useState(true);
   const [currentTime, setCurrentTime] = useState(secondsToMinutesAndSeconds(0));
   const [maxTime, setMaxTime] = useState(secondsToMinutesAndSeconds(0));

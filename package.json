@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Your personalized radio and music player.",
   "scripts": {
-    "start": "parcel index.html",
+    "start": "parcel index.html --port 1234",
     "build": "parcel build index.html",
     "test": "jest",
     "watch-test": "jest --watch"
@@ -51,3 +51,5 @@
     "packageExports": true
   }
 }
+
+

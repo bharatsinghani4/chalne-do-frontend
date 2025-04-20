@@ -24,7 +24,13 @@ const HomePage = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log({ data });
-        audio.replacePlaylist(data, 1);
+        const baseURL = "https://splicemood.github.io/react-music-player/";
+        const absoluteAudioLists = data.map((track) => ({
+          ...track,
+          src: new URL(track.src, baseURL).href,
+        }));
+        console.log({ absoluteAudioLists });
+        audio.replacePlaylist(absoluteAudioLists);
       });
   };
 
@@ -56,6 +62,10 @@ const HomePage = () => {
     ["alt+ArrowRight", handleNextPlaylist],
     ["mod+Slash", openModal],
   ]);
+
+  if (audio.durations.length !== 0) {
+    return <div>Loading audio...</div>;
+  }
 
   return (
     <Layout>

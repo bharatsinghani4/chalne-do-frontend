@@ -152,6 +152,9 @@ const Recording = ({
 
 const PlayList = ({ nextPlaylist, prevPlaylist }) => {
   const audio = useAudio();
+  if (audio.isLoading) {
+    return <div>Loading audio...</div>;
+  }
   const {
     currentTrackIndex: active,
     setCurrentTrack: setActive,
@@ -159,10 +162,12 @@ const PlayList = ({ nextPlaylist, prevPlaylist }) => {
     togglePlayPause,
     play,
     playlist,
+    isReady,
   } = audio;
   const [rootRef, setRootRef] = useState(null);
   const [controlsRefs, setControlsRefs] = useState({});
 
+  console.log({ isReady });
   console.log(audio.durations);
   console.log(playlist);
 
