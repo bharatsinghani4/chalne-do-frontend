@@ -30,7 +30,7 @@ const CoverButton = ({ cover, onClick, ref, isPlaying, isActive }) => {
 
   const backgroundImage = useMemo(
     () =>
-      [cover, "/react-music-player/icons/thumbnail.svg"]
+      [cover, "icons/thumbnail.svg"]
         .filter(Boolean)
         .map((image) => `url('${image}')`)
         .join(","),
@@ -85,13 +85,10 @@ const Recording = ({
   togglePlayPause,
   children,
 }) => {
-  const { scrollIntoView, targetRef } =
-    useScrollIntoView <
-    HTMLDivElement >
-    {
-      offset: 200,
-      duration: 500,
-    };
+  const { scrollIntoView, targetRef } = useScrollIntoView({
+    offset: 200,
+    duration: 500,
+  });
 
   const isActive = useMemo(() => active === id, [active, id]);
 
@@ -166,6 +163,9 @@ const PlayList = ({ nextPlaylist, prevPlaylist }) => {
   const [rootRef, setRootRef] = useState(null);
   const [controlsRefs, setControlsRefs] = useState({});
 
+  console.log(audio.durations);
+  console.log(playlist);
+
   const setControlRef = (name) => (node) => {
     controlsRefs[name] = node;
     setControlsRefs(controlsRefs);
@@ -209,7 +209,7 @@ const PlayList = ({ nextPlaylist, prevPlaylist }) => {
         >
           {playlist.map((song, index) => {
             const { minutes, padSeconds } = secondsToMinutesAndSeconds(
-              audio.durations[index]
+              audio?.durations[index]
             );
 
             return (

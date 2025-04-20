@@ -24,7 +24,7 @@ import "./MusicPlayer.css";
 import "./Loader.css";
 
 const debouncePassUpdateUnlock = 50;
-const fallbackSrc = "../../public/icons/thumbnail.svg";
+const fallbackSrc = "icons/thumbnail.svg";
 
 const GlobalAudioPlayer = () => {
   const audio = useAudio();
@@ -217,11 +217,12 @@ const GlobalAudioPlayer = () => {
               <Image
                 draggable={false}
                 className={"music-cover-art"}
-                src={source || fallbackSrc}
-                onError={({ currentTarget }) => {
-                  currentTarget.onerror = null;
-                  currentTarget.src = fallbackSrc;
-                }}
+                src={source}
+                // src={source || fallbackSrc}
+                // onError={({ currentTarget }) => {
+                //   currentTarget.onerror = null;
+                //   currentTarget.src = fallbackSrc;
+                // }}
                 alt={"cover art"}
               />
               <Box flex={1}>

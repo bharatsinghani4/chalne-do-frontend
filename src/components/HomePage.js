@@ -10,6 +10,7 @@ import { Layout } from "./Layout";
 
 const HomePage = () => {
   const audio = useAudio();
+  console.log({ audio });
   const [openedModal, { open: openModal, close: closeModal }] =
     useDisclosure(false);
   const [playlistNumber, setPlaylistNumber] = useState(
@@ -17,9 +18,14 @@ const HomePage = () => {
   );
 
   const fetchSongsMetadata = (index) => {
-    fetch(`tracks_${index}.json`)
+    fetch(
+      `https://splicemood.github.io/react-music-player/tracks_${index}.json`
+    )
       .then((res) => res.json())
-      .then(audio.replacePlaylist);
+      .then((data) => {
+        console.log({ data });
+        audio.replacePlaylist(data, 1);
+      });
   };
 
   useEffect(() => {
